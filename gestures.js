@@ -1,46 +1,43 @@
+// Obtém o elemento onde os gestos serão detectados
 const gestureArea = document.getElementById('gestureArea');
-const pages = ['index.html', 'nav.html', 'cap1.html']; // Lista de páginas
-let currentPageIndex = pages.indexOf(window.location.pathname.split('/').pop());
 
-let startX, endX;
-const threshold = 50; // Limite para considerar um gesto como swipe
+// Variáveis para armazenar as coordenadas de início e fim do toque
+let startX, startY, endX, endY;
 
+// Adiciona um ouvinte de eventos para o início do toque
 gestureArea.addEventListener('touchstart', function(event) {
-    const touch = event.touches[0];
-    startX = touch.pageX;
+    const touch = event.touches[0]; // Obtém o primeiro ponto de toque
+    startX = touch.pageX; // Armazena a coordenada X de início
+    startY = touch.pageY; // Armazena a coordenada Y de início
 }, false);
 
+// Adiciona um ouvinte de eventos para o fim do toque
 gestureArea.addEventListener('touchend', function(event) {
-    const touch = event.changedTouches[0];
-    endX = touch.pageX;
+    const touch = event.changedTouches[0]; // Obtém o ponto de toque que terminou
+    endX = touch.pageX; // Armazena a coordenada X de fim
+    endY = touch.pageY; // Armazena a coordenada Y de fim
 
-    handleGesture();
+    handleGesture(); // Chama a função para lidar com o gesto
 }, false);
 
+// Função para lidar com o gesto baseado nas coordenadas armazenadas
 function handleGesture() {
-    const dx = endX - startX;
-
-    if (Math.abs(dx) > threshold) { // Detecta um deslize significativo
+    const dx = endX - startX; // Diferença horizontal entre o início e o fim
+    const dy = endY - startY; // Diferença vertical entre o início e o fim
+    
+    if (Math.abs(dx) > Math.abs(dy)) {
+        // Se a diferença horizontal é maior que a vertical, é um swipe horizontal
         if (dx > 0) {
-            // Swipe para a direita
-            goToPreviousPage();
+            gestureArea.innerHTML = 'Deslizar para a direita'; // Deslizar para a direita
         } else {
-            // Swipe para a esquerda
-            goToNextPage();
+            gestureArea.innerHTML = 'Deslizar para a esquerda'; // Deslizar para a esquerda
         }
-    }
-}
-
-function goToNextPage() {
-    if (currentPageIndex < pages.length - 1) {
-        currentPageIndex++;
-        window.location.href = pages[currentPageIndex];
-    }
-}
-
-function goToPreviousPage() {
-    if (currentPageIndex > 0) {
-        currentPageIndex--;
-        window.location.href = pages[currentPageIndex];
+    } else {
+        // Caso contrário, é um swipe vertical
+        if (dy > 0) {
+            gestureArea.innerHTML = 'Deslizar para baixo'; // Deslizar para baixo
+        } else {
+            gestureArea.innerHTML = 'Deslizar para cima'; // Deslizar para cima
+        }
     }
 }
