@@ -5,19 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capítulo 1</title>
     <style>
-        #gestureArea {
-            width: 100vw;
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Evita rolagem vertical */
+        }
+        #container {
+            display: flex; /* Flexbox para layout horizontal */
             height: 100vh;
-            background-color: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
+            width: 300vw; /* Largura suficiente para permitir a rolagem horizontal */
+        }
+        #content {
+            width: 100vw; /* Cada "página" ocupa 100% da largura da viewport */
+            height: 100vh;
+            box-sizing: border-box;
+            padding: 20px;
+            overflow-y: auto; /* Permite rolar verticalmente dentro de cada página */
         }
     </style>
 </head>
 <body>
-    <div id="gestureArea">Capítulo 1</div>
+    <div id="container">
+        <div id="content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum condimentum nisl in leo scelerisque, tristique consectetur leo varius...<</p>
+            <p>Donec luctus nunc mi, eu dapibus diam tristique vitae. Maecenas ut risus auctor, blandit odio ut, lobortis dolor...</p>
+            <p>Maecenas aliquet purus in venenatis fringilla. Maecenas odio tellus, condimentum in tristique quis, consequat eget nunc...</p>
+            <!-- Adicione mais conteúdo aqui -->
+        </div>
+    </div>
     <script src="gestures.js"></script>
 </body>
 </html>

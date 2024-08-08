@@ -1,21 +1,18 @@
 const gestureArea = document.getElementById('gestureArea');
-
-let startX, startY, endX, endY;
-
-// Lista das páginas em ordem
-const pages = ['index.html', 'nav.html', 'cap1.html'];
+const pages = ['index.html', 'nav.html', 'cap1.html']; // Lista de páginas
 let currentPageIndex = pages.indexOf(window.location.pathname.split('/').pop());
+
+let startX, endX;
+const threshold = 50; // Limite para considerar um gesto como swipe
 
 gestureArea.addEventListener('touchstart', function(event) {
     const touch = event.touches[0];
     startX = touch.pageX;
-    startY = touch.pageY;
 }, false);
 
 gestureArea.addEventListener('touchend', function(event) {
     const touch = event.changedTouches[0];
     endX = touch.pageX;
-    endY = touch.pageY;
 
     handleGesture();
 }, false);
@@ -23,7 +20,7 @@ gestureArea.addEventListener('touchend', function(event) {
 function handleGesture() {
     const dx = endX - startX;
 
-    if (Math.abs(dx) > 50) { // Detecta um deslize significativo
+    if (Math.abs(dx) > threshold) { // Detecta um deslize significativo
         if (dx > 0) {
             // Swipe para a direita
             goToPreviousPage();
